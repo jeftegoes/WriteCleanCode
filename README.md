@@ -125,4 +125,24 @@
 
 FOLDER REFACTORING HERE!!!!
 
+### Long parameter list
+
+#### Long parameter list
+
+- Another common cold smell is a method with long parameter lists, the more parameters we have for a method, the harder it gets to understand that method and its intention.
+  - CheckNotifications(null, 1, true, false, DateTime.Now)
+  - Now, what do these arguments represent?
+    - What is now, what is one?
+    - What is true?
+    - What is false?
+  - We cannot tell without having a look at the implementation of that method.
+
+- I know that a method like that, every time you want to call it, we have to pass so many arguments, so not only that method is hard to understand, but it's also hard to use.
+
+FOLDER REFACTORING HERE!!!!
+
+#### Method parameters best practices
+
+- Less than 3 parameters
+
 # Refactoring
