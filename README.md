@@ -12,7 +12,7 @@
 - `class Page1 {}`
 
 - Now, let's see how we can improve this code:
-- 
+  
 - `SqlDataReader dataReader;`
 - `int overdueDays;`
 - `void CheckAvailability_Click();`
@@ -120,7 +120,7 @@
 - Another example:
   - `void Parse(int command);`
     - This method is called pass. It gets a command of type integer and returns void, what is wrong with this method typically pass means getting a string and converting that to a different object.
-    - For example, you might have a pass method that gets a string representation of a daytime and then it returns a daytime object.
+    - For example, you might have a pass method that gets a string representation of a datetime and then it returns a daytime object.
     - So the problem with this method is that it's parameter should be of type string and its return type should be an integer, not void.
 
 FOLDER REFACTORING HERE!!!!
@@ -130,7 +130,7 @@ FOLDER REFACTORING HERE!!!!
 #### Long parameter list
 
 - Another common cold smell is a method with long parameter lists, the more parameters we have for a method, the harder it gets to understand that method and its intention.
-  - CheckNotifications(null, 1, true, false, DateTime.Now)
+  - `CheckNotifications(null, 1, true, false, DateTime.Now)`
   - Now, what do these arguments represent?
     - What is now, what is one?
     - What is true?
@@ -139,10 +139,173 @@ FOLDER REFACTORING HERE!!!!
 
 - I know that a method like that, every time you want to call it, we have to pass so many arguments, so not only that method is hard to understand, but it's also hard to use.
 
-FOLDER REFACTORING HERE!!!!
+FOLDER REFACTORING HERE!!!! 
 
-#### Method parameters best practices
+- Resume:
+  - More than three parameters, most of the time is a code smell, and you need to get rid of unnecessary parameters or encapsulate the logically related ones into a class.
 
-- Less than 3 parameters
+### Output parameters
+
+#### Output parameters
+
+- `int count = 0`
+- `var customers = GetCustomers(pageIndex, out count)`
+
+FOLDER REFACTORING HERE!!!! 
+
+Resume:
+- `out` Avoid them
+- Return an object from a method instead
+  
+### Variable declarations on the top
+
+- When you declare a variable on top of a method, it's like you're talking about a story and then you go somewhere else where those variables are not used until later, so the context switches
+- So someone reading that code will have to consume more brainpower to remember the connection between those variables declared at the top and where they are used.
+
+
+#### Variables
+
+FOLDER REFACTORING HERE!!!! 
+
+- Declare them close to their usage.
+
+### Magic numbers
+
+#### Avoid magic number
+
+FOLDER REFACTORING HERE!!!! 
+
+- Use constants or enums
+
+### Nested conditionals
+
+- Nested conditionals, that's one of the code smells that I often see amongst junior and sometimes intermediate developers. So basically what I mean by that is a piece of code that looks like this. You have a bunch of if else, if else, and a switch in the middle and perhaps a loop.
+
+- So the problem with this nested conditionals is they make programs hard to read, are to change, hard to understand and hard to test.
+
+    ```
+    if (a)
+    {
+        if (b)
+        {
+            if (c)
+            {
+                statement
+            }
+            else
+            {
+
+            }
+        }
+    }
+    ```
+
+#### Use ternary operator
+
+- Imagine you have a pattern like this in your code, so `a` is a boolean expression, and if it's true, you're going to set the value of `someValue`, otherwise we're going to set to `anotherValue`:
+
+```
+if (a)
+    c = someValue;
+else
+    c = anotherValue;
+```
+
+- The ternary operator has three parts, the first part, the second part and the third part, note that these parts are separated by Questionmark and a column:
+
+`c = (a) ? someValue : anotherValue;`
+
+- See a real world example:
+
+    ```
+    if (customer.TotalOrders > 50)
+        discount = 0.1f;
+    else
+        discount = 0.01f;
+    ```
+
+- We can rewrite this expression using ternary operator like this.
+  - `discount = (customer.TotalOrders > 50) ? 0.1f : 0.01f;`
+
+#### Ternary operator abuse
+
+`c = a ? b : d ? e : f;`
+
+- Do not apply more than once.
+
+#### Simplify true/false
+
+- Here is another great technique which does not have a name, I just call it simplify, true or false.
+
+```
+if (a)
+    b = true;
+else
+    b = false;
+```
+
+- We can simplify this expression to something like this:
+
+`b = a;`
+
+- See a real world example:
+
+    ```
+    if (customer.TotalOrders > 50)
+        isGoldCustomer = true;
+    else
+        isGoldCustomer = false;
+    ```
+
+- We can rewrite this expression to something like this:
+
+`isGoldCustomer = customer.TotalOrders > 50;`
+
+#### Combine
+
+- Imagine you have two nested conditional statements like the one you see here, so if he's true and we come here, if this is true, then some statement is going to be executed:
+
+    ```
+    if (a)
+    {
+        if (b)
+        {
+            statement
+        }
+    }
+    ```
+
+- We can use the logical and operator to rewrite these conditional statements like this:
+
+    ```
+    if (a && b)
+    {
+        statement
+    }
+    ```
+
+#### Early exit
+
+    ```
+    if (a)
+    {
+        if (b)
+        {
+            statement
+        }
+    }
+    ```
+
+- There is also another way to rewrite this expression and get rid of the nested levels, we can use the `guard statements`:
+
+    ```
+    if (!a)
+        return;
+
+    if (!b)
+        return;
+
+    statement
+    ```
 
 # Refactoring

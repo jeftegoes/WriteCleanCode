@@ -1,3 +1,5 @@
+using System;
+
 namespace PoorMethodSignatures
 {
     public class User
