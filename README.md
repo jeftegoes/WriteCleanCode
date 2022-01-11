@@ -308,4 +308,145 @@ else
     statement
     ```
 
+#### Early exit + combine
+- So if A is false or B is false, return immediately, otherwise we execute this statement here.
+- 
+  ```
+  if (!a || !b)
+    return;
+
+  statement
+  ```
+
+#### Swap orders
+
+  ```
+  if (a)
+  {
+    if (b)
+    {
+      isValid = true
+    }
+  }
+  if (c)
+  {
+    if (b)
+    {
+      isValid = true
+    }
+  }
+  ```
+
+- We reduced for brief statements to only one and guess what, we can totally get rid of that.
+  
+  ```
+    if (b)
+    {
+      if (a || c)
+      {
+        isValid = true
+      }
+    }
+  ```
+
+- Combine again
+  ```
+    if (b && (a || c))
+    {
+      isValid = true;
+    }
+  ```
+
+- Combine again
+  `isValid = (b && (a || c));`
+
+
+FOLDER REFACTORING HERE!!!! 
+
+#### Everything in moderation
+
+if (a && (b || c) && !d || e && (f && !g || h))
+  STINKS!
+
+### Switch statements
+
+### Comments
+
+#### Stating the obvious
+- This comment is telling me returns the list of customers, so what is the value of this comment?
+  ```
+  // Returns the list of customers
+  public List<Customer> GetCustomers()
+  {
+  }
+  ```
+
+  ```
+  // Create a new connection to the database
+  var connection = new SqlConnection();
+  ```
+
+  ```
+  // If the number of overdue days is less than 5, notify
+  // the customer. Otherwise, issue a fine.
+  if (overdueDays < 5>)
+    NotifyCustomer();
+  else
+    IssueFine();
+  ```
+
+- The code should be so clean and so self explanatory that it does not need any comments.
+
+#### Version history
+
+- Again, this is completely useless these days.
+- We use version control systems. If someone is interested to see who made what change when they can always look at the log or history of the repository.
+
+  ```
+  // Prior to v1.3
+  if (isActive)
+  {
+    
+  }
+  ```
+  
+  ```
+  // 1 Jan 2000 - John: ...
+  // 4 Jun 2003 - Bob: ...
+  // 21 Dec 2005 - Ana: ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  public class WorkScheduler
+  ```
+
+#### Clarify the code
+- Well, couldn't we just name that variable pay frequency?
+  - This way we wouldn't need that comment.
+
+`var pf = 10; // Pay frequency`
+
+#### Dead code
+
+- And here's another category of comments that, quote, why would you even comment out some code, just delete it if you don't need it, just delete it.
+- We can always pull it back from your source code repository.
+
+```
+// public class WorkScheduler
+// {
+// }
+```
+
+#### Best practices
+
+- Don't write comments, re-write your code
+- Dont't explain "whats" (the obvious)
+- Explain "whys" and "hows"
+
+FOLDER REFACTORING HERE!!!! 
+
 # Refactoring
