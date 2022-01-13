@@ -370,6 +370,14 @@ if (a && (b || c) && !d || e && (f && !g || h))
 
 ### Switch statements
 
+### Duplicated code
+
+- Duplication, that's another code smell that we should avoid at all times.
+- Plus duplicated code makes your code noisy and hard to understand.
+- There is a principle called **DRY** which stands for **Don't Repeat Yourself** (The Pragmatic Programmer).
+
+FOLDER REFACTORING HERE!!!! 
+
 ### Comments
 
 #### Stating the obvious
