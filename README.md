@@ -1,4 +1,7 @@
-# Clean code
+# Clean code for C# develoapers <!-- omit in toc -->
+
+## Contents <!-- omit in toc -->
+
 
 ## Code smells
 
@@ -369,6 +372,8 @@ if (a && (b || c) && !d || e && (f && !g || h))
   STINKS!
 
 ### Switch statements
+
+Polymorphism...
 
 ### Duplicated code
 
