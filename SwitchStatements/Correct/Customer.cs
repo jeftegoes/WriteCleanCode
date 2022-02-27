@@ -1,7 +1,7 @@
 namespace SwitchStatements
 {
-    public class Customer
+    public abstract class Customer
     {
-        public CustomerType Type { get; set; }
+        public abstract MonthlyStatement GenerateStatement(MonthlyUsage monthlyUsage);
     }
 }

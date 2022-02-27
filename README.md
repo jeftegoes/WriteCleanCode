@@ -2,7 +2,6 @@
 
 ## Contents <!-- omit in toc -->
 
-
 ## Code smells
 
 ### Poor names
@@ -15,7 +14,6 @@
 - `class Page1 {}`
 
 - Now, let's see how we can improve this code:
-  
 - `SqlDataReader dataReader;`
 - `int overdueDays;`
 - `void CheckAvailability_Click();`
@@ -30,14 +28,17 @@
 #### Names with encodings
 
 - I've seen names with encodings, the encoding using this example is Hungarian notation, and that was
+
   - `int iMaxRequests`
 
 - Very popular amongst C++ programmers back in the 80s and 90s. And he came up with this idea to prefix variable names with our data type. But these days, Hungarian notation is not applicable anymore. We have really good ideas in Visual Studio, if you want to see the data type of a variable, you can just hover your mouse over it and you will see there is no need to pollute your identifiers with that data type.
 
 - So in this example, we can just call these:
+
   - `int maxRequests`
 
 - Here is another example of Hungarian notation, What does m_objCollection mean?
+
   - `var m_objCollection = new StringCollection();`
 
 - I have to look and see what is stored in that collection.
@@ -48,9 +49,11 @@
 #### Ambiguous names
 
 - What does this method do here? Is it telling me if multiple items are selected or is it to select multiple items?
+
   - `bool MultiSelect() {}`
 
 - Here is another ambiguous name, what does inside a name ID mean?
+
   - `int? incidentNameId`
 
     - If it's incident the name, then why is the data type nullable integer, so it's more like an incident
@@ -62,6 +65,7 @@
 #### Noisy names.
 
 - Look at these identifiers, the customer or a list of approved customers.
+
   - `Customer theCustomer;`
   - `List<Customer> listOfApprovedCustomers;`
 
@@ -75,7 +79,6 @@
 - Meaningful
 - Reveal intention
 - Chosen from problem domain
-
 
 ### Poor names conventions
 
@@ -91,23 +94,25 @@
 #### .NET naming conventions
 
 - In .NET, we have two naming conventions, `PascalCase` and `camelCase`
+
   - `PascalCase`: First letter of every word is uppercase.
   - `camelCase`: The first letter of the first word is lowercase, but the first letter of every word after that is uppercase.
 
 - Example using .NET name convention:
-    ```
-    public class Customer
-    {
-        private int _id;
-        
-        public string Name { get; set; }
 
-        public Charge(int amount)
-        {
-            var tax = 0;
-        }
-    }
-    ```
+  ```
+  public class Customer
+  {
+      private int _id;
+
+      public string Name { get; set; }
+
+      public Charge(int amount)
+      {
+          var tax = 0;
+      }
+  }
+  ```
 
 - So as you see the name of a class `public class Customer`, its properties `public string Name` and methods `public Charge` used `PascalCase`.
 - For private fields `private int _id`, parameters `int amount` and local variables `var tax = 0`, use `camelCase`.
@@ -118,6 +123,7 @@
 #### Poor method signatures
 
 - `Orange GetCustomer(int airplane);`
+
   - So basically, what I mean by that is it's like you have a method called GetCustomer, but the parameter it guess it's an airplane which is actually not an airplane object. It's an integer. And what that method returns is not a customer. It's an orange.
 
 - Another example:
@@ -133,6 +139,7 @@ FOLDER REFACTORING HERE!!!!
 #### Long parameter list
 
 - Another common cold smell is a method with long parameter lists, the more parameters we have for a method, the harder it gets to understand that method and its intention.
+
   - `CheckNotifications(null, 1, true, false, DateTime.Now)`
   - Now, what do these arguments represent?
     - What is now, what is one?
@@ -142,7 +149,7 @@ FOLDER REFACTORING HERE!!!!
 
 - I know that a method like that, every time you want to call it, we have to pass so many arguments, so not only that method is hard to understand, but it's also hard to use.
 
-FOLDER REFACTORING HERE!!!! 
+FOLDER REFACTORING HERE!!!!
 
 - Resume:
   - More than three parameters, most of the time is a code smell, and you need to get rid of unnecessary parameters or encapsulate the logically related ones into a class.
@@ -154,21 +161,21 @@ FOLDER REFACTORING HERE!!!!
 - `int count = 0`
 - `var customers = GetCustomers(pageIndex, out count)`
 
-FOLDER REFACTORING HERE!!!! 
+FOLDER REFACTORING HERE!!!!
 
 Resume:
+
 - `out` Avoid them
 - Return an object from a method instead
-  
+
 ### Variable declarations on the top
 
 - When you declare a variable on top of a method, it's like you're talking about a story and then you go somewhere else where those variables are not used until later, so the context switches
 - So someone reading that code will have to consume more brainpower to remember the connection between those variables declared at the top and where they are used.
 
-
 #### Variables
 
-FOLDER REFACTORING HERE!!!! 
+FOLDER REFACTORING HERE!!!!
 
 - Declare them close to their usage.
 
@@ -176,7 +183,7 @@ FOLDER REFACTORING HERE!!!!
 
 #### Avoid magic number
 
-FOLDER REFACTORING HERE!!!! 
+FOLDER REFACTORING HERE!!!!
 
 - Use constants or enums
 
@@ -186,22 +193,22 @@ FOLDER REFACTORING HERE!!!!
 
 - So the problem with this nested conditionals is they make programs hard to read, are to change, hard to understand and hard to test.
 
-    ```
-    if (a)
-    {
-        if (b)
-        {
-            if (c)
-            {
-                statement
-            }
-            else
-            {
+  ```
+  if (a)
+  {
+      if (b)
+      {
+          if (c)
+          {
+              statement
+          }
+          else
+          {
 
-            }
-        }
-    }
-    ```
+          }
+      }
+  }
+  ```
 
 #### Use ternary operator
 
@@ -220,12 +227,12 @@ else
 
 - See a real world example:
 
-    ```
-    if (customer.TotalOrders > 50)
-        discount = 0.1f;
-    else
-        discount = 0.01f;
-    ```
+  ```
+  if (customer.TotalOrders > 50)
+      discount = 0.1f;
+  else
+      discount = 0.01f;
+  ```
 
 - We can rewrite this expression using ternary operator like this.
   - `discount = (customer.TotalOrders > 50) ? 0.1f : 0.01f;`
@@ -253,12 +260,12 @@ else
 
 - See a real world example:
 
-    ```
-    if (customer.TotalOrders > 50)
-        isGoldCustomer = true;
-    else
-        isGoldCustomer = false;
-    ```
+  ```
+  if (customer.TotalOrders > 50)
+      isGoldCustomer = true;
+  else
+      isGoldCustomer = false;
+  ```
 
 - We can rewrite this expression to something like this:
 
@@ -268,24 +275,24 @@ else
 
 - Imagine you have two nested conditional statements like the one you see here, so if he's true and we come here, if this is true, then some statement is going to be executed:
 
-    ```
-    if (a)
-    {
-        if (b)
-        {
-            statement
-        }
-    }
-    ```
+  ```
+  if (a)
+  {
+      if (b)
+      {
+          statement
+      }
+  }
+  ```
 
 - We can use the logical and operator to rewrite these conditional statements like this:
 
-    ```
-    if (a && b)
-    {
-        statement
-    }
-    ```
+  ```
+  if (a && b)
+  {
+      statement
+  }
+  ```
 
 #### Early exit
 
@@ -301,20 +308,20 @@ else
 
 - There is also another way to rewrite this expression and get rid of the nested levels, we can use the `guard statements`:
 
-    ```
-    if (!a)
-        return;
+  ```
+  if (!a)
+      return;
 
-    if (!b)
-        return;
+  if (!b)
+      return;
 
-    statement
-    ```
+  statement
+  ```
 
 #### Early exit + combine
+
 - So if A is false or B is false, return immediately, otherwise we execute this statement here.
-- 
-  ```
+- ```
   if (!a || !b)
     return;
 
@@ -323,25 +330,25 @@ else
 
 #### Swap orders
 
-  ```
-  if (a)
+```
+if (a)
+{
+  if (b)
   {
-    if (b)
-    {
-      isValid = true
-    }
+    isValid = true
   }
-  if (c)
+}
+if (c)
+{
+  if (b)
   {
-    if (b)
-    {
-      isValid = true
-    }
+    isValid = true
   }
-  ```
+}
+```
 
 - We reduced for brief statements to only one and guess what, we can totally get rid of that.
-  
+
   ```
     if (b)
     {
@@ -353,6 +360,7 @@ else
   ```
 
 - Combine again
+
   ```
     if (b && (a || c))
     {
@@ -363,17 +371,38 @@ else
 - Combine again
   `isValid = (b && (a || c));`
 
-
-FOLDER REFACTORING HERE!!!! 
+FOLDER REFACTORING HERE!!!!
 
 #### Everything in moderation
 
 if (a && (b || c) && !d || e && (f && !g || h))
-  STINKS!
+STINKS!
 
 ### Switch statements
 
-Polymorphism...
+- Replace them with polymorphic dispatch
+- Use push member down refactoring
+
+FOLDER REFACTORING HERE!!!!
+
+### Long methods
+
+- Problems with long methods
+  - Hard to understand
+  - Hard to change
+  - Hard to re-use
+- More than 10 lines of code
+- We want methods that specialise in **one** thing
+  - When you have a method that is more than five lines or let's say 10 lines, it's most likely doing to many things.
+
+#### Cohesion principle
+
+- Things that are related, should be together.
+- Things that are not related, should not be together.
+
+#### Single responsibility principle (SRP)
+
+- A class / method should do only one thing, and do it very well.
 
 ### Duplicated code
 
@@ -381,12 +410,14 @@ Polymorphism...
 - Plus duplicated code makes your code noisy and hard to understand.
 - There is a principle called **DRY** which stands for **Don't Repeat Yourself** (The Pragmatic Programmer).
 
-FOLDER REFACTORING HERE!!!! 
+FOLDER REFACTORING HERE!!!!
 
 ### Comments
 
 #### Stating the obvious
+
 - This comment is telling me returns the list of customers, so what is the value of this comment?
+
   ```
   // Returns the list of customers
   public List<Customer> GetCustomers()
@@ -419,10 +450,10 @@ FOLDER REFACTORING HERE!!!!
   // Prior to v1.3
   if (isActive)
   {
-    
+
   }
   ```
-  
+
   ```
   // 1 Jan 2000 - John: ...
   // 4 Jun 2003 - Bob: ...
@@ -438,6 +469,7 @@ FOLDER REFACTORING HERE!!!!
   ```
 
 #### Clarify the code
+
 - Well, couldn't we just name that variable pay frequency?
   - This way we wouldn't need that comment.
 
@@ -460,6 +492,10 @@ FOLDER REFACTORING HERE!!!!
 - Dont't explain "whats" (the obvious)
 - Explain "whys" and "hows"
 
-FOLDER REFACTORING HERE!!!! 
+FOLDER REFACTORING HERE!!!!
 
 # Refactoring
+
+# Resume
+
+- Private fields always in the constructor...
