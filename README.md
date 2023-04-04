@@ -17,7 +17,7 @@
   - [1.4. Long parameter list](#14-long-parameter-list)
   - [1.5. Output parameters](#15-output-parameters)
   - [1.6. Variable declarations on the top](#16-variable-declarations-on-the-top)
-  - [1.7. Variables](#17-variables)
+    - [1.7. Variables](#17-variables)
   - [1.8. Magic numbers](#18-magic-numbers)
     - [1.8.1. Avoid magic number](#181-avoid-magic-number)
   - [1.9. Nested conditionals](#19-nested-conditionals)
@@ -171,7 +171,7 @@
     - For example, you might have a pass method that gets a string representation of a datetime and then it returns a daytime object.
     - So the problem with this method is that it's parameter should be of type string and its return type should be an integer, not void.
 
-FOLDER REFACTORING HERE!!!!
+[Poor method signatures example](PoorMethodSignatures/)
 
 ## 1.4. Long parameter list
 
@@ -186,7 +186,7 @@ FOLDER REFACTORING HERE!!!!
 
 - I know that a method like that, every time you want to call it, we have to pass so many arguments, so not only that method is hard to understand, but it's also hard to use.
 
-FOLDER REFACTORING HERE!!!!
+[Long parameter list example](LongParameterList/)
 
 - Resume:
   - More than three parameters, most of the time is a code smell, and you need to get rid of unnecessary parameters or encapsulate the logically related ones into a class.
@@ -196,7 +196,7 @@ FOLDER REFACTORING HERE!!!!
 - `int count = 0`
 - `var customers = GetCustomers(pageIndex, out count)`
 
-FOLDER REFACTORING HERE!!!!
+[Output parameters example](OutputParameters/)
 
 Resume:
 
@@ -208,9 +208,9 @@ Resume:
 - When you declare a variable on top of a method, it's like you're talking about a story and then you go somewhere else where those variables are not used until later, so the context switches
 - So someone reading that code will have to consume more brainpower to remember the connection between those variables declared at the top and where they are used.
 
-## 1.7. Variables
+[Varibles example](VariableDeclarationsOnTheTop/)
 
-FOLDER REFACTORING HERE!!!!
+### 1.7. Variables
 
 - Declare them close to their usage.
 
@@ -218,7 +218,7 @@ FOLDER REFACTORING HERE!!!!
 
 ### 1.8.1. Avoid magic number
 
-FOLDER REFACTORING HERE!!!!
+[Magic numbers example](MagicNumbers/)
 
 - Use constants or enums
 
@@ -408,7 +408,8 @@ FOLDER REFACTORING HERE!!!!
 - Combine again
   `isValid = (b && (a || c));`
 
-FOLDER REFACTORING HERE!!!!
+
+[Nested conditionals example](NestedConditionals/)
 
 ### 1.9.8. Everything in moderation
 
@@ -420,7 +421,7 @@ STINKS!
 - Replace them with polymorphic dispatch
 - Use push member down refactoring
 
-FOLDER REFACTORING HERE!!!!
+[Switch statements example](SwitchStatements/)
 
 ## 1.11. Long methods
 
@@ -447,7 +448,7 @@ FOLDER REFACTORING HERE!!!!
 - Plus duplicated code makes your code noisy and hard to understand.
 - There is a principle called **DRY** which stands for **Don't Repeat Yourself** (The Pragmatic Programmer).
 
-FOLDER REFACTORING HERE!!!!
+[Duplicated code example](DuplicatedCode/)
 
 ## 1.13. Comments
 
@@ -529,7 +530,7 @@ FOLDER REFACTORING HERE!!!!
 - Dont't explain "whats" (the obvious)
 - Explain "whys" and "hows"
 
-FOLDER REFACTORING HERE!!!!
+[Comments example](Comments/)
 
 # 2. Refactoring
 
